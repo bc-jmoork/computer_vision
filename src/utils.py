@@ -1,10 +1,14 @@
 import numpy as np
 
 def convolution(image, kernel, padding = True, bias=0.):
+    """
+    Simple 2D convolution of image with or without padding
+    You can add a constant bias if necessary
+    """
     K = kernel.shape[0]
     pad = K//2
     M, N = image.shape
-    image_result = np.zeros_like(image, dtype='int')
+    conv_image = np.zeros_like(image, dtype='int')
     
     # save padded image
     if padding:
@@ -18,9 +22,9 @@ def convolution(image, kernel, padding = True, bias=0.):
     for i in range(M):
         for j in range(N):
             sum = np.sum(image_padded[i:i+K, j:j+K]*kernel)
-            image_result[i][j] = sum + bias
-                        
-
+            conv_image[i][j] = sum + bias
+ 
+    return conv_image
 
 
 def fft_image(norm_image):
