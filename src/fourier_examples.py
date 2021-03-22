@@ -27,13 +27,3 @@ gray_solid = cv2.cvtColor(image_solid, cv2.COLOR_RGB2GRAY)
 norm_stripes = gray_stripes/255.0
 norm_solid = gray_solid/255.0
 
-# perform a fast fourier transform and create a scaled, frequency transform image
-def ft_image(norm_image):
-    '''This function takes in a normalized, grayscale image
-       and returns a frequency spectrum transform of that image. '''
-    f = np.fft.fft2(norm_image)
-    fshift = np.fft.fftshift(f)
-    frequency_tx = 20*np.log(np.abs(fshift))
-    
-    return frequency_tx
-
